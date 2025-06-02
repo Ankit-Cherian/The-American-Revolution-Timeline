@@ -1622,7 +1622,7 @@ select.form-control {
 
 /* Enhanced Header */
 .app-header {
-    background: linear-gradient(135deg, var(--color-primary), #1e3c72); /* Adjusted gradient */
+    background: linear-gradient(135deg, var(--color-primary), #162a52); /* Adjusted gradient */
     color: white;
     position: relative;
     overflow: hidden; /* Keep to contain ::before pseudo-element */
@@ -1638,7 +1638,7 @@ select.form-control {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
     background-size: cover;
-    opacity: 0.05; /* Further reduced opacity for subtlety */
+    opacity: 0.03; /* Further reduced opacity for subtlety */
 }
 
 .app-header .container {
@@ -1648,16 +1648,24 @@ select.form-control {
 
 .app-header h1 {
     font-size: var(--font-size-4xl); /* 30px */
-    font-weight: var(--font-weight-bold); /* Increased font weight */
+    font-weight: 700; /* Increased font weight */
     margin-bottom: var(--space-8);
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Slightly adjusted text shadow */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Slightly adjusted text shadow */
+    opacity: 0; /* Initial state for animation */
+    animation: fadeInH1 0.8s ease-out forwards;
+    animation-delay: 0.2s; /* Slight delay for h1 */
 }
 
 .app-header p {
     font-size: var(--font-size-xl); /* 18px */
-    opacity: 0.85; /* Slightly adjusted opacity for softer look */
+    opacity: 0; /* Initial state for animation, overrides existing 0.85 for start */
     margin-bottom: 0;
     line-height: var(--line-height-tight); /* Added for consistency if text wraps */
+    animation: fadeInP 0.8s ease-out forwards;
+    animation-delay: 0.5s; /* Slightly longer delay for p */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 /* Enhanced Control Panel */
@@ -1729,4 +1737,26 @@ select.form-control {
     .tips-section {
         margin-top: var(--space-16);
     }
+}
+
+@keyframes fadeInH1 {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1; /* H1 is fully opaque */
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInP {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 0.85; /* Paragraph's target opacity */
+    transform: translateY(0);
+  }
 }
