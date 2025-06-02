@@ -425,10 +425,17 @@ class RevolutionaryWarMap {
     }
 
     updateVisibleBattles() {
+        // Determine the current month and year from the timeline slider
         const currentDate = this.timelineDates[this.currentTimelineIndex];
+        const currentTimelineMonth = currentDate.getMonth();
+        const currentTimelineYear = currentDate.getFullYear();
         
         this.battleMarkers.forEach(marker => {
-            if (marker.battleDate <= currentDate) {
+            const battleMonth = marker.battleDate.getMonth();
+            const battleYear = marker.battleDate.getFullYear();
+
+            // Show marker if its date is in or before the current timeline month/year
+            if (battleYear < currentTimelineYear || (battleYear === currentTimelineYear && battleMonth <= currentTimelineMonth)) {
                 if (!this.battleLayerGroup.hasLayer(marker)) {
                     this.battleLayerGroup.addLayer(marker);
                 }
@@ -793,14 +800,16 @@ class RevolutionaryWarMap {
         // Use event delegation for popup buttons
         this.map.on('popupopen', (e) => {
             const popup = e.popup;
-            const content = popup.getContent();
+            // const content = popup.getContent(); // Unused variable
             
             // Find and handle explore button
+            // A small delay is used to ensure the popup's DOM content is fully rendered and queryable,
+            // especially for attaching event listeners to elements within the popup.
             setTimeout(() => {
                 const exploreBtn = popup._contentNode.querySelector('.popup-explore-btn');
                 if (exploreBtn) {
                     exploreBtn.addEventListener('click', (event) => {
-                        event.stopPropagation();
+                        event.stopPropagation(); // Prevent click from propagating to map or other layers
                         const battleName = exploreBtn.getAttribute('data-battle-name');
                         const battle = this.battles.find(b => b.name === battleName);
                         if (battle) {
@@ -809,7 +818,7 @@ class RevolutionaryWarMap {
                         }
                     });
                 }
-            }, 50); // Small delay to ensure DOM is ready
+            }, 50);
         });
     }
 }
