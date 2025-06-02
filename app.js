@@ -1,4 +1,4 @@
-// Revolutionary War Interactive Map Application
+// Revolutionary War Interactive Map Application - V2.0 Enhanced for Students
 class RevolutionaryWarMap {
     constructor() {
         this.map = null;
@@ -7,8 +7,9 @@ class RevolutionaryWarMap {
         this.currentTimelineIndex = 0;
         this.isPlaying = false;
         this.playInterval = null;
+        this.discoveredBattles = new Set(); // Track which battles students have explored
         
-        // Battle data from research
+        // Battle data from research - Enhanced with images and fun facts
         this.battles = [
             {
                 name: "Battles of Lexington and Concord",
@@ -23,7 +24,11 @@ class RevolutionaryWarMap {
                 description: "British forces raiding Concord driven back into Boston with heavy losses. This engagement marked the beginning of armed conflict between British troops and colonial militiamen.",
                 theater: "Boston Campaign",
                 sources: ["Peckham, Howard H. The Toll of Independence", "Fischer, David Hackett. Paul Revere's Ride"],
-                primary_sources: ["Massachusetts Historical Society Archives", "Letter from General Gage to Lord Dartmouth"]
+                primary_sources: ["Massachusetts Historical Society Archives", "Letter from General Gage to Lord Dartmouth"],
+                image: "https://www.nps.gov/common/uploads/structured_data/3C7B45AE-1DD8-B71B-0B71F36729B9C9D5.jpg",
+                fun_fact: "Paul Revere never actually shouted 'The British are coming!' He would have said 'The regulars are coming out!' to avoid detection.",
+                quick_summary: "The shot heard 'round the world! British soldiers marched to seize weapons, but colonial minutemen were ready and waiting.",
+                student_activity: "Imagine you're a minuteman hearing the church bells ring at midnight - what would you grab before running to fight?"
             },
             {
                 name: "Capture of Fort Ticonderoga",
@@ -38,7 +43,11 @@ class RevolutionaryWarMap {
                 description: "Ethan Allen's Green Mountain Boys and Benedict Arnold captured this strategic fort, providing the Continental Army with much-needed artillery.",
                 theater: "Northern Campaign",
                 sources: ["Randall, Willard Sterne. Ethan Allen", "Martin, James Kirby. Benedict Arnold"],
-                primary_sources: ["Ethan Allen's narrative", "Continental Congress records"]
+                primary_sources: ["Ethan Allen's narrative", "Continental Congress records"],
+                image: "https://www.nps.gov/common/uploads/structured_data/3C822B1B-1DD8-B71B-0BA4F3B5A2F2F5E6.jpg",
+                fun_fact: "Ethan Allen demanded the fort surrender 'In the name of the Great Jehovah and the Continental Congress!' - quite dramatic for 5 AM!",
+                quick_summary: "A surprise dawn attack! The Green Mountain Boys captured a fort full of cannons without firing a shot.",
+                student_activity: "These cannons were dragged 300 miles through snow to Boston. How long do you think that took?"
             },
             {
                 name: "Battle of Bunker Hill",
@@ -53,7 +62,11 @@ class RevolutionaryWarMap {
                 description: "British forces eventually captured Breed's Hill and Bunker Hill but suffered devastating casualties, proving American militia could inflict serious damage on professional British troops.",
                 theater: "Boston Campaign",
                 sources: ["Philbrick, Nathaniel. Bunker Hill", "Ketchum, Richard M. Decisive Day"],
-                primary_sources: ["John Adams letters", "British Army dispatches", "Peter Salem testimony"]
+                primary_sources: ["John Adams letters", "British Army dispatches", "Peter Salem testimony"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/The_Death_of_General_Warren_at_the_Battle_of_Bunker_Hill%2C_June_17%2C_1775_MET_DP-13747-037.jpg/800px-The_Death_of_General_Warren_at_the_Battle_of_Bunker_Hill%2C_June_17%2C_1775_MET_DP-13747-037.jpg",
+                fun_fact: "The famous order 'Don't fire until you see the whites of their eyes!' helped save precious ammunition.",
+                quick_summary: "British won the hill but lost over 1,000 soldiers! Americans proved they could fight the world's best army.",
+                student_activity: "Why would waiting to see 'whites of their eyes' be a smart military strategy?"
             },
             {
                 name: "Battle of Trenton",
@@ -68,7 +81,11 @@ class RevolutionaryWarMap {
                 description: "Washington's surprise attack across the Delaware River captured the Hessian garrison and revitalized the American cause during its darkest hour.",
                 theater: "New York and New Jersey Campaign",
                 sources: ["Fischer, David Hackett. Washington's Crossing", "McCullough, David. 1776"],
-                primary_sources: ["Washington's field reports", "Hessian officer accounts", "Pennsylvania Evening Post"]
+                primary_sources: ["Washington's field reports", "Hessian officer accounts", "Pennsylvania Evening Post"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Washington_Crossing_the_Delaware_by_Emanuel_Leutze%2C_MMA-NYC%2C_1851.jpg/800px-Washington_Crossing_the_Delaware_by_Emanuel_Leutze%2C_MMA-NYC%2C_1851.jpg",
+                fun_fact: "Washington crossed the icy Delaware on Christmas night while Hessian soldiers were celebrating and off guard!",
+                quick_summary: "The ultimate Christmas surprise! Washington's daring river crossing saved the Revolution from total defeat.",
+                student_activity: "The famous painting shows Washington standing in the boat - but he probably sat down for safety. What else might be wrong with the painting?"
             },
             {
                 name: "Battle of Princeton",
@@ -83,7 +100,11 @@ class RevolutionaryWarMap {
                 description: "Following up on the Trenton victory, Washington defeated British forces at Princeton, forcing them to abandon most of New Jersey.",
                 theater: "New York and New Jersey Campaign",
                 sources: ["Stryker, William S. The Battles of Trenton and Princeton", "Wood, Gordon S. The American Revolution"],
-                primary_sources: ["Washington's correspondence", "Continental Army orderly books"]
+                primary_sources: ["Washington's correspondence", "Continental Army orderly books"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/The_Death_of_General_Mercer_at_the_Battle_of_Princeton%2C_January_3%2C_1777_MET_DP827710.jpg/800px-The_Death_of_General_Mercer_at_the_Battle_of_Princeton%2C_January_3%2C_1777_MET_DP827710.jpg",
+                fun_fact: "This victory was so important that people started calling Washington the 'American Hannibal' after the famous ancient general!",
+                quick_summary: "One-two punch! Just a week after Trenton, Washington struck again and proved America could win this war.",
+                student_activity: "Why might winning two battles in a row be more important than winning just one big battle?"
             },
             {
                 name: "Battle of Brandywine",
@@ -98,7 +119,11 @@ class RevolutionaryWarMap {
                 description: "General Howe outflanked Washington's army, leading to American retreat and eventual British occupation of Philadelphia.",
                 theater: "Philadelphia Campaign",
                 sources: ["McGuire, Thomas J. The Philadelphia Campaign", "Taafe, Stephen R. The Philadelphia Campaign"],
-                primary_sources: ["Marquis de Lafayette memoirs", "British Army reports"]
+                primary_sources: ["Marquis de Lafayette memoirs", "British Army reports"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Battle_of_Brandywine.jpg/800px-Battle_of_Brandywine.jpg",
+                fun_fact: "Young Marquis de Lafayette, only 19 years old, was wounded in this battle but kept fighting! He became like a son to Washington.",
+                quick_summary: "British clever tactics outfoxed Washington, but the Continental Army lived to fight another day.",
+                student_activity: "Lafayette was a teenager fighting for American freedom. What would motivate a foreign teenager to risk his life for another country?"
             },
             {
                 name: "Battle of Saratoga",
@@ -113,7 +138,11 @@ class RevolutionaryWarMap {
                 description: "General Burgoyne's surrender marked the turning point of the war, bringing France into the conflict and internationalizing the struggle.",
                 theater: "Saratoga Campaign",
                 sources: ["Ketchum, Richard M. Saratoga", "Mintz, Max M. The Generals of Saratoga"],
-                primary_sources: ["Burgoyne's surrender terms", "Gates correspondence", "French diplomatic archives"]
+                primary_sources: ["Burgoyne's surrender terms", "Gates correspondence", "French diplomatic archives"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Surrender_of_General_Burgoyne.jpg/800px-Surrender_of_General_Burgoyne.jpg",
+                fun_fact: "This victory convinced France to join the war! Benjamin Franklin was in Paris and helped seal the deal with his charm and wit.",
+                quick_summary: "The turning point! This victory brought France (and their powerful navy) into the war as America's ally.",
+                student_activity: "Why would France want to help America fight against Britain? Think about European politics and rivalries."
             },
             {
                 name: "Battle of Monmouth",
@@ -128,7 +157,11 @@ class RevolutionaryWarMap {
                 description: "The Continental Army's performance showed the effectiveness of Baron von Steuben's training during the winter at Valley Forge.",
                 theater: "Northern Theater",
                 sources: ["Stryker, William S. The Battle of Monmouth", "Spring, Matthew H. With Zeal and With Bayonets Only"],
-                primary_sources: ["Court martial records", "Washington's general orders", "Molly Pitcher legend accounts"]
+                primary_sources: ["Court martial records", "Washington's general orders", "Molly Pitcher legend accounts"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Molly_Pitcher_Currier_and_Ives_1876.jpg/800px-Molly_Pitcher_Currier_and_Ives_1876.jpg",
+                fun_fact: "Molly Pitcher carried water to thirsty soldiers and may have even fired a cannon when her husband was wounded! Talk about teamwork!",
+                quick_summary: "After the harsh winter at Valley Forge, American soldiers showed they could fight like European professionals.",
+                student_activity: "The legend says Molly Pitcher took her husband's place at the cannon. What does this tell us about women's roles in the Revolution?"
             },
             {
                 name: "Siege of Charleston",
@@ -143,7 +176,11 @@ class RevolutionaryWarMap {
                 description: "General Lincoln's surrender of Charleston gave the British control of the largest port in the South and thousands of Continental soldiers.",
                 theater: "Southern Campaign",
                 sources: ["Pancake, John S. This Destructive War", "Edgar, Walter. South Carolina"],
-                primary_sources: ["Clinton's dispatches", "Siege diary of Johann Ewald"]
+                primary_sources: ["Clinton's dispatches", "Siege diary of Johann Ewald"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Siege_of_Charleston.jpg/800px-Siege_of_Charleston.jpg",
+                fun_fact: "This was America's worst defeat of the war! But it made southern colonists so angry they fought even harder afterward.",
+                quick_summary: "Britain's biggest victory in the South, but it backfired by making more colonists join the fight for independence.",
+                student_activity: "Sometimes losing a battle can help win a war. How might this defeat have actually helped the American cause?"
             },
             {
                 name: "Battle of Kings Mountain",
@@ -158,7 +195,11 @@ class RevolutionaryWarMap {
                 description: "Overmountain Men defeated Major Patrick Ferguson's Loyalist force, eliminating organized Loyalist resistance in the backcountry.",
                 theater: "Southern Campaign",
                 sources: ["Buchanan, John. The Road to Guilford Courthouse", "Draper, Lyman. King's Mountain and Its Heroes"],
-                primary_sources: ["Isaac Shelby accounts", "William Campbell reports"]
+                primary_sources: ["Isaac Shelby accounts", "William Campbell reports"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Kings_Mountain_monument.jpg/800px-Kings_Mountain_monument.jpg",
+                fun_fact: "The 'Overmountain Men' were frontier fighters who lived beyond the Appalachian Mountains - they were tough as nails!",
+                quick_summary: "Mountain men proved that frontier fighters could beat trained soldiers when they knew the terrain.",
+                student_activity: "Why would living on the frontier make someone a better soldier? Think about the skills needed for survival."
             },
             {
                 name: "Battle of Cowpens",
@@ -173,7 +214,11 @@ class RevolutionaryWarMap {
                 description: "Daniel Morgan's tactical brilliance destroyed Banastre Tarleton's elite force and demonstrated American military maturity.",
                 theater: "Southern Campaign",
                 sources: ["Buchanan, John. The Road to Guilford Courthouse", "Babits, Lawrence E. A Devil of a Whipping"],
-                primary_sources: ["Morgan's battle report", "Tarleton's memoirs"]
+                primary_sources: ["Morgan's battle report", "Tarleton's memoirs"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Battle_of_Cowpens15.jpg/800px-Battle_of_Cowpens15.jpg",
+                fun_fact: "Daniel Morgan used a brilliant double envelopment - the same tactic Hannibal used 2,000 years earlier at Cannae!",
+                quick_summary: "A perfect tactical trap! American general Daniel Morgan used psychology and terrain to destroy an elite British force.",
+                student_activity: "Morgan told his militia they could retreat after two shots. Why would telling soldiers they could run away actually make them fight better?"
             },
             {
                 name: "Battle of Guilford Courthouse",
@@ -188,7 +233,11 @@ class RevolutionaryWarMap {
                 description: "Though Cornwallis held the field, his heavy casualties forced him to abandon the Carolinas and march to Virginia.",
                 theater: "Southern Campaign",
                 sources: ["Buchanan, John. The Road to Guilford Courthouse", "Goldsborough, Robert. The Carolina Backcountry"],
-                primary_sources: ["Cornwallis correspondence", "Nathanael Greene reports"]
+                primary_sources: ["Cornwallis correspondence", "Nathanael Greene reports"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Guilford_Courthouse.jpg/800px-Guilford_Courthouse.jpg",
+                fun_fact: "A British politician said 'Another such victory would ruin the British Army!' This is where we get the term 'Pyrrhic victory.'",
+                quick_summary: "British won the battle but lost so many soldiers they had to give up the South. Sometimes winning can be losing!",
+                student_activity: "General Greene said 'We fight, get beat, rise, and fight again.' How can this strategy eventually win a war?"
             },
             {
                 name: "Siege of Yorktown",
@@ -203,7 +252,11 @@ class RevolutionaryWarMap {
                 description: "Combined Franco-American forces besieged Cornwallis at Yorktown. His surrender effectively ended major combat operations and led to British negotiations for peace.",
                 theater: "Yorktown Campaign",
                 sources: ["Ketchum, Richard M. Victory at Yorktown", "Fleming, Thomas. The Perils of Peace"],
-                primary_sources: ["Articles of Capitulation", "Washington's dispatches", "French naval records", "Cornwallis surrender speech"]
+                primary_sources: ["Articles of Capitulation", "Washington's dispatches", "French naval records", "Cornwallis surrender speech"],
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Surrender_of_Lord_Cornwallis.jpg/800px-Surrender_of_Lord_Cornwallis.jpg",
+                fun_fact: "When Cornwallis surrendered, the British band played 'The World Turned Upside Down' - how fitting for the end of the war!",
+                quick_summary: "The grand finale! French ships blocked escape by sea while American and French armies surrounded Yorktown. Game over!",
+                student_activity: "This victory required perfect timing between armies and navies from different countries. What could have gone wrong with this plan?"
             }
         ];
 
@@ -231,11 +284,24 @@ class RevolutionaryWarMap {
         this.loadBattleMarkers();
         this.setupEventListeners();
         this.updateTimelineDisplay();
+        this.setupPopupEventHandlers(); // Add popup event handling
     }
 
     initializeMap() {
         // Initialize map centered on colonial America
-        this.map = L.map('map').setView([39.5, -76.0], 6);
+        this.map = L.map('map', {
+            zoomControl: true,
+            scrollWheelZoom: true,
+            doubleClickZoom: true,
+            touchZoom: true,
+            boxZoom: true,
+            keyboard: true,
+            dragging: true,
+            tap: true,
+            tapTolerance: 15, // Increase tap tolerance for better mobile experience
+            zoomSnap: 0.5,
+            zoomDelta: 0.5
+        }).setView([39.5, -76.0], 6);
 
         // Add base tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -264,24 +330,66 @@ class RevolutionaryWarMap {
         const color = this.getMarkerColor(battle.outcome);
         
         const marker = L.circleMarker([battle.latitude, battle.longitude], {
-            radius: 8,
+            radius: 12, // Increased from 10 for better hit detection
             fillColor: color,
             color: '#ffffff',
-            weight: 2,
+            weight: 4, // Increased border for better visibility
             opacity: 1,
-            fillOpacity: 0.8
+            fillOpacity: 0.85,
+            className: 'battle-marker',
+            pane: 'markerPane' // Ensure proper layering
         });
 
+        // Create popup content without onclick handler
         const popupContent = `
             <div class="popup-title">${battle.name}</div>
             <div class="popup-date">${this.formatDate(battle.date)}</div>
             <div class="popup-outcome ${this.getOutcomeClass(battle.outcome)}">${battle.outcome}</div>
+            <div class="popup-quick-summary">${battle.quick_summary}</div>
+            <button class="popup-explore-btn" data-battle-name="${battle.name}">🔍 Explore This Battle!</button>
         `;
 
-        marker.bindPopup(popupContent);
+        marker.bindPopup(popupContent, {
+            maxWidth: 320,
+            className: 'custom-popup',
+            closeButton: true,
+            autoPan: true,
+            keepInView: true
+        });
         
-        marker.on('click', () => {
-            this.showBattleDetails(battle);
+        // Single click handler for the marker
+        marker.on('click', (e) => {
+            e.originalEvent.stopPropagation(); // Prevent map click
+            this.handleMarkerClick(battle, marker);
+        });
+
+        // Enhanced hover effects
+        marker.on('mouseover', (e) => {
+            e.originalEvent.stopPropagation();
+            marker.setStyle({
+                radius: 16,
+                weight: 5,
+                fillOpacity: 1,
+                className: 'battle-marker battle-marker-hover'
+            });
+            
+            // Show tooltip
+            marker.bindTooltip(battle.name, {
+                permanent: false,
+                direction: 'top',
+                offset: [0, -10],
+                className: 'battle-tooltip'
+            }).openTooltip();
+        });
+
+        marker.on('mouseout', (e) => {
+            marker.setStyle({
+                radius: 12,
+                weight: 4,
+                fillOpacity: 0.85,
+                className: 'battle-marker'
+            });
+            marker.closeTooltip();
         });
 
         // Store battle data with marker
@@ -289,6 +397,23 @@ class RevolutionaryWarMap {
         marker.battleDate = new Date(battle.date);
 
         return marker;
+    }
+
+    handleMarkerClick(battle, marker) {
+        // Mark as discovered
+        this.markBattleAsDiscovered(battle.name);
+        
+        // Show battle details
+        this.showBattleDetails(battle);
+        
+        // Add sparkle effect
+        this.addSparkleEffect(marker);
+        
+        // Zoom to battle location for better focus
+        this.map.setView([battle.latitude, battle.longitude], Math.max(this.map.getZoom(), 8), {
+            animate: true,
+            duration: 0.5
+        });
     }
 
     loadBattleMarkers() {
@@ -356,6 +481,11 @@ class RevolutionaryWarMap {
         // Close battle info panel
         document.getElementById('close-panel').addEventListener('click', () => {
             this.hideBattleDetails();
+        });
+
+        // Surprise Me button
+        document.getElementById('surprise-me-btn').addEventListener('click', () => {
+            this.showRandomBattle();
         });
     }
 
@@ -428,6 +558,9 @@ class RevolutionaryWarMap {
     }
 
     showBattleDetails(battle) {
+        // Mark as discovered when details are shown
+        this.markBattleAsDiscovered(battle.name);
+        
         const panel = document.getElementById('battle-info-panel');
         const title = document.getElementById('battle-title');
         const details = document.getElementById('battle-details');
@@ -435,63 +568,109 @@ class RevolutionaryWarMap {
         title.textContent = battle.name;
 
         details.innerHTML = `
+            <div class="battle-image-container">
+                <img src="${battle.image}" alt="${battle.name}" class="battle-image" onerror="this.style.display='none'">
+            </div>
+
+            <div class="battle-quick-summary">
+                <h4>📚 Quick Summary</h4>
+                <p>${battle.quick_summary}</p>
+            </div>
+
+            <div class="fun-fact-section">
+                <h4>🤔 Fun Fact</h4>
+                <p>${battle.fun_fact}</p>
+            </div>
+
+            <div class="student-activity-section">
+                <h4>🎯 Think About This</h4>
+                <p>${battle.student_activity}</p>
+            </div>
+
             <div class="battle-meta">
                 <div class="battle-meta-item">
-                    <span class="battle-meta-label">Date</span>
+                    <span class="battle-meta-label">📅 Date</span>
                     <span class="battle-meta-value">${this.formatDate(battle.date)}</span>
                 </div>
                 <div class="battle-meta-item">
-                    <span class="battle-meta-label">Location</span>
+                    <span class="battle-meta-label">📍 Location</span>
                     <span class="battle-meta-value">${battle.location}</span>
                 </div>
                 <div class="battle-meta-item">
-                    <span class="battle-meta-label">Outcome</span>
-                    <span class="battle-meta-value">${battle.outcome}</span>
+                    <span class="battle-meta-label">🏆 Outcome</span>
+                    <span class="battle-meta-value outcome-badge ${this.getOutcomeClass(battle.outcome)}">${battle.outcome}</span>
                 </div>
                 <div class="battle-meta-item">
-                    <span class="battle-meta-label">Theater</span>
+                    <span class="battle-meta-label">⚔️ Theater</span>
                     <span class="battle-meta-value">${battle.theater}</span>
                 </div>
             </div>
 
             <div class="battle-detail-section">
-                <h4>Significance</h4>
+                <h4>💡 Why This Battle Mattered</h4>
                 <p>${battle.significance}</p>
             </div>
 
             <div class="battle-detail-section">
-                <h4>Description</h4>
+                <h4>📖 What Happened</h4>
                 <p>${battle.description}</p>
             </div>
 
             <div class="casualties-section">
-                <h4>Casualties</h4>
+                <h4>⚔️ Battle Cost (Human Lives)</h4>
                 <div class="casualties-grid">
-                    <div class="casualty-column">
-                        <h5>American Forces</h5>
+                    <div class="casualty-column american">
+                        <h5>🇺🇸 American Forces</h5>
                         <p>${battle.casualties_american}</p>
                     </div>
-                    <div class="casualty-column">
-                        <h5>British Forces</h5>
+                    <div class="casualty-column british">
+                        <h5>🇬🇧 British Forces</h5>
                         <p>${battle.casualties_british}</p>
                     </div>
                 </div>
             </div>
 
-            <div class="sources-section">
-                <h4>Academic Sources</h4>
-                <ul class="sources-list">
-                    ${battle.sources.map(source => `<li>${source}</li>`).join('')}
-                </ul>
+            <details class="sources-accordion">
+                <summary>📚 Sources for Teachers & Advanced Students</summary>
+                <div class="sources-content">
+                    <div class="sources-section">
+                        <h4>Academic Sources</h4>
+                        <ul class="sources-list">
+                            ${battle.sources.map(source => `<li>${source}</li>`).join('')}
+                        </ul>
 
-                <h4>Primary Sources</h4>
-                <ul class="primary-sources-list">
-                    ${battle.primary_sources.map(source => `<li>${source}</li>`).join('')}
-                </ul>
+                        <h4>Primary Sources</h4>
+                        <ul class="primary-sources-list">
+                            ${battle.primary_sources.map(source => `<li>${source}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            </details>
+
+            <div class="battle-navigation">
+                <button class="btn btn--secondary" data-action="random-battle">
+                    🎲 Explore Random Battle
+                </button>
+                <button class="btn btn--primary" data-action="focus-battle" data-battle-name="${battle.name}">
+                    🎯 Focus on Map
+                </button>
             </div>
         `;
 
+        // Add event listeners for the navigation buttons
+        const randomBtn = details.querySelector('[data-action="random-battle"]');
+        const focusBtn = details.querySelector('[data-action="focus-battle"]');
+        
+        if (randomBtn) {
+            randomBtn.addEventListener('click', () => this.showRandomBattle());
+        }
+        
+        if (focusBtn) {
+            focusBtn.addEventListener('click', () => this.zoomToBattle(battle.name));
+        }
+
         panel.classList.remove('hidden');
+        panel.scrollTop = 0; // Scroll to top when new battle is shown
     }
 
     hideBattleDetails() {
@@ -502,6 +681,136 @@ class RevolutionaryWarMap {
         const date = new Date(dateString);
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return date.toLocaleDateString('en-US', options);
+    }
+
+    markBattleAsDiscovered(battleName) {
+        this.discoveredBattles.add(battleName);
+        this.updateDiscoveryProgress();
+        
+        // Show achievement notification
+        if (this.discoveredBattles.size === 1) {
+            this.showAchievement("First Discovery!", "You've found your first battle! Keep exploring to learn more.");
+        } else if (this.discoveredBattles.size === 5) {
+            this.showAchievement("Battle Historian!", "You've discovered 5 battles. You're becoming a real expert!");
+        } else if (this.discoveredBattles.size === this.battles.length) {
+            this.showAchievement("Revolutionary War Master!", "Amazing! You've explored every battle in the war!");
+        }
+    }
+
+    showAchievement(title, message) {
+        const achievement = document.createElement('div');
+        achievement.className = 'achievement-notification';
+        achievement.innerHTML = `
+            <div class="achievement-icon">🏆</div>
+            <div class="achievement-content">
+                <div class="achievement-title">${title}</div>
+                <div class="achievement-message">${message}</div>
+            </div>
+        `;
+        
+        document.body.appendChild(achievement);
+        
+        setTimeout(() => {
+            achievement.classList.add('show');
+        }, 100);
+        
+        setTimeout(() => {
+            achievement.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(achievement);
+            }, 300);
+        }, 4000);
+    }
+
+    updateDiscoveryProgress() {
+        const progressBar = document.getElementById('discovery-progress');
+        const progressText = document.getElementById('discovery-text');
+        
+        if (progressBar && progressText) {
+            const percentage = (this.discoveredBattles.size / this.battles.length) * 100;
+            progressBar.style.width = `${percentage}%`;
+            progressText.textContent = `Discovered: ${this.discoveredBattles.size}/${this.battles.length} battles`;
+        }
+    }
+
+    showRandomBattle() {
+        const randomBattle = this.battles[Math.floor(Math.random() * this.battles.length)];
+        this.showBattleDetails(randomBattle);
+        this.map.setView([randomBattle.latitude, randomBattle.longitude], 10);
+    }
+
+    zoomToBattle(battleName) {
+        const battle = this.battles.find(b => b.name === battleName);
+        if (battle) {
+            this.map.setView([battle.latitude, battle.longitude], 12);
+            // Find and pulse the marker
+            const marker = this.battleMarkers.find(m => m.battleData.name === battleName);
+            if (marker) {
+                this.pulseMarker(marker);
+            }
+        }
+    }
+
+    pulseMarker(marker) {
+        let pulseCount = 0;
+        const originalRadius = marker.options.radius;
+        
+        const pulse = () => {
+            if (pulseCount < 6) {
+                marker.setStyle({
+                    radius: pulseCount % 2 === 0 ? originalRadius + 5 : originalRadius
+                });
+                pulseCount++;
+                setTimeout(pulse, 300);
+            } else {
+                marker.setStyle({ radius: originalRadius });
+            }
+        };
+        
+        pulse();
+    }
+
+    addSparkleEffect(marker) {
+        // Add a temporary sparkle effect when battle is clicked
+        const sparkle = L.circleMarker(marker.getLatLng(), {
+            radius: 15,
+            fillColor: '#FFD700',
+            color: '#FFA500',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.6,
+            className: 'sparkle-effect'
+        });
+        
+        this.battleLayerGroup.addLayer(sparkle);
+        
+        setTimeout(() => {
+            this.battleLayerGroup.removeLayer(sparkle);
+        }, 1000);
+    }
+
+    setupPopupEventHandlers() {
+        // Use event delegation for popup buttons
+        this.map.on('popupopen', (e) => {
+            const popup = e.popup;
+            const content = popup.getContent();
+            
+            // Find and handle explore button
+            setTimeout(() => {
+                const exploreBtn = popup._contentNode.querySelector('.popup-explore-btn');
+                if (exploreBtn) {
+                    exploreBtn.addEventListener('click', (event) => {
+                        event.stopPropagation();
+                        const battleName = exploreBtn.getAttribute('data-battle-name');
+                        const battle = this.battles.find(b => b.name === battleName);
+                        if (battle) {
+                            this.showBattleDetails(battle);
+                            this.map.closePopup(); // Close popup after exploring
+                        }
+                    });
+                }
+            }, 50); // Small delay to ensure DOM is ready
+        });
     }
 }
 
