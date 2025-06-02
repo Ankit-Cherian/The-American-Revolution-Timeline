@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revolutionary War Interactive Map (1775-1783)</title>
+    <title>🇺🇸 Revolutionary War Battle Explorer - Interactive Map (1775-1783)</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,8 +12,22 @@
         <!-- Header -->
         <header class="app-header">
             <div class="container">
-                <h1>American Revolutionary War Battles (1775-1783)</h1>
-                <p>Interactive map showing battles, territorial control, and historical progression</p>
+                <h1>🇺🇸 Revolutionary War Battle Explorer</h1>
+                <p>Discover the battles that created America! Explore interactive maps, see historic images, and learn amazing facts about each battle.</p>
+                
+                <!-- Discovery Progress -->
+                <div class="discovery-tracker">
+                    <div class="discovery-header">
+                        <span class="discovery-icon">🏆</span>
+                        <span id="discovery-text">Discovered: 0/13 battles</span>
+                    </div>
+                    <div class="discovery-progress-container">
+                        <div class="discovery-progress-bar">
+                            <div id="discovery-progress" class="discovery-progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="discovery-hint">💡 Click on battle markers to explore and unlock achievements!</div>
+                </div>
             </div>
         </header>
 
@@ -22,9 +36,9 @@
             <!-- Controls Panel -->
             <div class="controls-panel">
                 <div class="control-section">
-                    <h3>Timeline Control</h3>
+                    <h3>📅 Time Travel Controls</h3>
                     <div class="timeline-container">
-                        <label for="timeline-slider" class="form-label">Date: <span id="current-date">April 1775</span></label>
+                        <label for="timeline-slider" class="form-label">Travel to: <span id="current-date">April 1775</span></label>
                         <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="101" value="0" step="1">
                         <div class="timeline-labels">
                             <span>Apr 1775</span>
@@ -35,64 +49,78 @@
                 </div>
 
                 <div class="control-section">
-                    <h3>Map Layers</h3>
+                    <h3>🗺️ Map Layers</h3>
                     <div class="layer-controls">
                         <label class="checkbox-label">
                             <input type="checkbox" id="battles-layer" checked>
-                            <span>Battle Markers</span>
+                            <span>⚔️ Battle Markers</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="territories-layer" checked>
-                            <span>Territorial Control</span>
+                            <span>🏛️ Territorial Control</span>
                         </label>
                         <label class="checkbox-label">
                             <input type="checkbox" id="supply-lines-layer">
-                            <span>Supply Lines</span>
+                            <span>🚛 Supply Lines</span>
                         </label>
                     </div>
                 </div>
 
                 <div class="control-section">
-                    <h3>Search Battles</h3>
-                    <input type="text" id="battle-search" class="form-control" placeholder="Search battles...">
+                    <h3>🔍 Find Battles</h3>
+                    <input type="text" id="battle-search" class="form-control" placeholder="Search for battles, locations, or events...">
                     <div id="search-results" class="search-results"></div>
+                    <button class="btn btn--outline btn--sm" id="surprise-me-btn">
+                        🎲 Surprise Me!
+                    </button>
                 </div>
 
                 <div class="control-section">
-                    <h3>Legend</h3>
+                    <h3>🏳️ Legend</h3>
                     <div class="legend">
                         <div class="legend-item">
                             <div class="legend-marker american-victory"></div>
-                            <span>American Victory</span>
+                            <span>🇺🇸 American Victory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-marker british-victory"></div>
-                            <span>British Victory</span>
+                            <span>🇬🇧 British Victory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-marker draw"></div>
-                            <span>Draw/Inconclusive</span>
+                            <span>🤝 Draw/Inconclusive</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-territory american-territory"></div>
-                            <span>American Territory</span>
+                            <span>🇺🇸 American Territory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-territory british-territory"></div>
-                            <span>British Territory</span>
+                            <span>🇬🇧 British Territory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-territory french-territory"></div>
-                            <span>French Territory</span>
+                            <span>🇫🇷 French Territory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-territory spanish-territory"></div>
-                            <span>Spanish Territory</span>
+                            <span>🇪🇸 Spanish Territory</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-territory native-territory"></div>
-                            <span>Native American Territory</span>
+                            <span>🏹 Native American Territory</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Quick Tips for Students -->
+                <div class="control-section tips-section">
+                    <h3>💡 Explorer Tips</h3>
+                    <div class="tips-list">
+                        <div class="tip-item">🎯 Click markers to discover battles</div>
+                        <div class="tip-item">⏱️ Use the timeline to see how the war progressed</div>
+                        <div class="tip-item">🔍 Hover over markers for quick info</div>
+                        <div class="tip-item">🏆 Unlock achievements by exploring!</div>
                     </div>
                 </div>
             </div>
@@ -117,7 +145,8 @@
         <!-- Footer -->
         <footer class="app-footer">
             <div class="container">
-                <p>&copy; 2025 Revolutionary War Interactive Map | Based on academic research and primary sources</p>
+                <p>🎓 Revolutionary War Battle Explorer | Created for students and educators | Based on historical research and primary sources</p>
+                <p>💫 Explore, learn, and discover the battles that shaped American history!</p>
             </div>
         </footer>
     </div>
