@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Battles of Lexington and Concord",
+    "date": "1775-04-19",
+    "location": "Massachusetts",
+    "latitude": 42.4431,
+    "longitude": -71.2252,
+    "outcome": "American victory",
+    "significance": "First battles of the Revolutionary War",
+    "description": "British forces raiding Concord driven back into Boston with heavy losses",
+    "theater": "Boston Campaign"
+  },
+  {
+    "name": "Battle of Bunker Hill",
+    "date": "1775-06-17",
+    "location": "Massachusetts",
+    "latitude": 42.3758,
+    "longitude": -71.0616,
+    "outcome": "British victory",
+    "significance": "Demonstrated American ability to stand against regular troops",
+    "description": "British drive American forces from Charlestown peninsula but suffer heavy losses",
+    "theater": "Boston Campaign"
+  },
+  {
+    "name": "Battle of Trenton",
+    "date": "1776-12-26",
+    "location": "New Jersey",
+    "latitude": 40.218,
+    "longitude": -74.755,
+    "outcome": "American victory",
+    "significance": "Boosted American morale after crossing Delaware",
+    "description": "Washington's surprise attack captures Hessian detachment",
+    "theater": "New York and New Jersey Campaign"
+  },
+  {
+    "name": "Battle of Saratoga",
+    "date": "1777-10-07",
+    "location": "New York",
+    "latitude": 43.0642,
+    "longitude": -73.637,
+    "outcome": "American victory",
+    "significance": "Convinced France to join the war",
+    "description": "British under Burgoyne forced to surrender; brings France into war",
+    "theater": "Saratoga Campaign"
+  },
+  {
+    "name": "Siege of Yorktown",
+    "date": "1781-10-19",
+    "location": "Virginia",
+    "latitude": 37.2393,
+    "longitude": -76.5107,
+    "outcome": "Franco-American victory",
+    "significance": "Final major battle; led to British surrender",
+    "description": "Cornwallis surrenders his entire force; last major land battle",
+    "theater": "Yorktown Campaign"
+  }
+]

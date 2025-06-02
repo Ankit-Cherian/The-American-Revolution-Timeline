@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revolutionary War Interactive Map (1775-1783)</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="container">
+                <h1>American Revolutionary War Battles (1775-1783)</h1>
+                <p>Interactive map showing battles, territorial control, and historical progression</p>
+            </div>
+        </header>
+
+        <!-- Main Application -->
+        <main class="app-main">
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+                <div class="control-section">
+                    <h3>Timeline Control</h3>
+                    <div class="timeline-container">
+                        <label for="timeline-slider" class="form-label">Date: <span id="current-date">April 1775</span></label>
+                        <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="101" value="0" step="1">
+                        <div class="timeline-labels">
+                            <span>Apr 1775</span>
+                            <span>Oct 1783</span>
+                        </div>
+                    </div>
+                    <button id="play-timeline" class="btn btn--secondary btn--sm">▶ Play Timeline</button>
+                </div>
+
+                <div class="control-section">
+                    <h3>Map Layers</h3>
+                    <div class="layer-controls">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="battles-layer" checked>
+                            <span>Battle Markers</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="territories-layer" checked>
+                            <span>Territorial Control</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="supply-lines-layer">
+                            <span>Supply Lines</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-section">
+                    <h3>Search Battles</h3>
+                    <input type="text" id="battle-search" class="form-control" placeholder="Search battles...">
+                    <div id="search-results" class="search-results"></div>
+                </div>
+
+                <div class="control-section">
+                    <h3>Legend</h3>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-marker american-victory"></div>
+                            <span>American Victory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker british-victory"></div>
+                            <span>British Victory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-marker draw"></div>
+                            <span>Draw/Inconclusive</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-territory american-territory"></div>
+                            <span>American Territory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-territory british-territory"></div>
+                            <span>British Territory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-territory french-territory"></div>
+                            <span>French Territory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-territory spanish-territory"></div>
+                            <span>Spanish Territory</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-territory native-territory"></div>
+                            <span>Native American Territory</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="map-container">
+                <div id="map" class="map"></div>
+                
+                <!-- Battle Info Panel -->
+                <div id="battle-info-panel" class="battle-info-panel hidden">
+                    <div class="panel-header">
+                        <h3 id="battle-title">Battle Information</h3>
+                        <button id="close-panel" class="btn btn--sm">×</button>
+                    </div>
+                    <div class="panel-content">
+                        <div id="battle-details"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="container">
+                <p>&copy; 2025 Revolutionary War Interactive Map | Based on academic research and primary sources</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
