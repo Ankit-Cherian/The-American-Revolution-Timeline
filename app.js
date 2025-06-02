@@ -403,9 +403,9 @@ class RevolutionaryWarMap {
         // Mark as discovered
         this.markBattleAsDiscovered(battle.name);
         
-        // Show battle details
-        this.showBattleDetails(battle);
-        
+        // Open the popup, details are shown via popup's "Explore" button
+        // marker.openPopup(); // This line was considered but is not needed as Leaflet handles it.
+
         // Add sparkle effect
         this.addSparkleEffect(marker);
         

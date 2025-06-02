@@ -898,9 +898,11 @@ select.form-control {
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
   border: 1px solid var(--color-border);
-  overflow: hidden;
+  /* overflow: hidden; */ /* Rely on panel-content for scrolling */
   z-index: 1000;
   transition: transform var(--duration-normal) var(--ease-standard);
+  display: flex;
+  flex-direction: column;
 }
 
 .battle-info-panel.hidden {
@@ -944,7 +946,8 @@ select.form-control {
 .panel-content {
   padding: var(--space-16);
   overflow-y: auto;
-  max-height: calc(100% - 60px);
+  /* max-height: calc(100% - 60px); */ /* Let flex-grow handle this */
+  flex-grow: 1; /* Allow content to take available space after header */
 }
 
 .battle-detail-section {
@@ -1619,10 +1622,11 @@ select.form-control {
 
 /* Enhanced Header */
 .app-header {
-    background: linear-gradient(135deg, #1e40af, #3730a3);
+    background: linear-gradient(135deg, var(--color-primary), #1e3c72); /* Adjusted gradient */
     color: white;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Keep to contain ::before pseudo-element */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Added subtle border */
 }
 
 .app-header::before {
@@ -1634,23 +1638,26 @@ select.form-control {
     bottom: 0;
     background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
     background-size: cover;
+    opacity: 0.05; /* Further reduced opacity for subtlety */
 }
 
 .app-header .container {
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Ensure text is above the ::before pseudo-element */
 }
 
 .app-header h1 {
-    font-size: var(--font-size-4xl);
+    font-size: var(--font-size-4xl); /* 30px */
+    font-weight: var(--font-weight-bold); /* Increased font weight */
     margin-bottom: var(--space-8);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Slightly adjusted text shadow */
 }
 
 .app-header p {
-    font-size: var(--font-size-xl);
-    opacity: 0.9;
+    font-size: var(--font-size-xl); /* 18px */
+    opacity: 0.85; /* Slightly adjusted opacity for softer look */
     margin-bottom: 0;
+    line-height: var(--line-height-tight); /* Added for consistency if text wraps */
 }
 
 /* Enhanced Control Panel */
