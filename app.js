@@ -346,7 +346,6 @@ class RevolutionaryWarMap {
             <div class="popup-date">${this.formatDate(battle.date)}</div>
             <div class="popup-outcome ${this.getOutcomeClass(battle.outcome)}">${battle.outcome}</div>
             <div class="popup-quick-summary">${battle.quick_summary}</div>
-            <button class="popup-explore-btn" data-battle-name="${battle.name}">🔍 Explore This Battle!</button>
         `;
 
         marker.bindPopup(popupContent, {
@@ -403,8 +402,8 @@ class RevolutionaryWarMap {
         // Mark as discovered
         this.markBattleAsDiscovered(battle.name);
         
-        // Open the popup, details are shown via popup's "Explore" button
-        // marker.openPopup(); // This line was considered but is not needed as Leaflet handles it.
+        // Show battle details panel immediately
+        this.showBattleDetails(battle);
 
         // Add sparkle effect
         this.addSparkleEffect(marker);
@@ -805,20 +804,20 @@ class RevolutionaryWarMap {
             // Find and handle explore button
             // A small delay is used to ensure the popup's DOM content is fully rendered and queryable,
             // especially for attaching event listeners to elements within the popup.
-            setTimeout(() => {
-                const exploreBtn = popup._contentNode.querySelector('.popup-explore-btn');
-                if (exploreBtn) {
-                    exploreBtn.addEventListener('click', (event) => {
-                        event.stopPropagation(); // Prevent click from propagating to map or other layers
-                        const battleName = exploreBtn.getAttribute('data-battle-name');
-                        const battle = this.battles.find(b => b.name === battleName);
-                        if (battle) {
-                            this.showBattleDetails(battle);
-                            this.map.closePopup(); // Close popup after exploring
-                        }
-                    });
-                }
-            }, 50);
+            // setTimeout(() => {
+            //     const exploreBtn = popup._contentNode.querySelector('.popup-explore-btn');
+            //     if (exploreBtn) {
+            //         exploreBtn.addEventListener('click', (event) => {
+            //             event.stopPropagation(); // Prevent click from propagating to map or other layers
+            //             const battleName = exploreBtn.getAttribute('data-battle-name');
+            //             const battle = this.battles.find(b => b.name === battleName);
+            //             if (battle) {
+            //                 this.showBattleDetails(battle);
+            //                 this.map.closePopup(); // Close popup after exploring
+            //             }
+            //         });
+            //     }
+            // }, 50);
         });
     }
 }
