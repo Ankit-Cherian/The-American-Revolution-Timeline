@@ -357,7 +357,9 @@ class RevolutionaryWarMap {
             maxWidth: 320,
             className: 'custom-popup',
             closeButton: true,
-            autoPan: true,
+            // Disable Leaflet's automatic panning to avoid conflicting
+            // animations with our manual `setView` call in `handleMarkerClick`.
+            autoPan: false,
             keepInView: true
         });
         
