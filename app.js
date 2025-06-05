@@ -369,6 +369,14 @@ class RevolutionaryWarMap {
             this.handleMarkerClick(battle, marker);
         });
 
+        // Bind tooltip once during marker creation
+        marker.bindTooltip(battle.name, {
+            permanent: false,
+            direction: 'top',
+            offset: [0, -10],
+            className: 'battle-tooltip'
+        });
+
         // Enhanced hover effects
         marker.on('mouseover', (e) => {
             e.originalEvent.stopPropagation();
@@ -378,14 +386,9 @@ class RevolutionaryWarMap {
                 fillOpacity: 1,
                 className: 'battle-marker battle-marker-hover'
             });
-            
+
             // Show tooltip
-            marker.bindTooltip(battle.name, {
-                permanent: false,
-                direction: 'top',
-                offset: [0, -10],
-                className: 'battle-tooltip'
-            }).openTooltip();
+            marker.openTooltip();
         });
 
         marker.on('mouseout', (e) => {
