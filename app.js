@@ -381,7 +381,7 @@ class RevolutionaryWarMap {
         marker.on('mouseover', (e) => {
             e.originalEvent.stopPropagation();
             marker.setStyle({
-                radius: 16,
+                radius: 15,
                 weight: 5,
                 fillOpacity: 1,
                 className: 'battle-marker battle-marker-hover'
