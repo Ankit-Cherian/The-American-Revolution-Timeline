@@ -1621,11 +1621,12 @@ select.form-control {
 
 /* Enhanced Header */
 .app-header {
-    background: linear-gradient(135deg, var(--color-primary), #162a52); /* Adjusted gradient */
+    background: linear-gradient(135deg, #1A237E 0%, #283593 100%);
     color: white;
     position: relative;
-    overflow: hidden; /* Keep to contain ::before pseudo-element */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Added subtle border */
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: var(--space-16) 0; /* Retain existing padding */
 }
 
 .app-header::before {
@@ -1635,9 +1636,8 @@ select.form-control {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
-    background-size: cover;
-    opacity: 0.03; /* Further reduced opacity for subtlety */
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4" viewBox="0 0 4 4"><path fill="white" fill-opacity="0.1" d="M1 3h1v1H1V3zm2-2h1v1H3V1z"></path></svg>');
+    opacity: 0.05;
 }
 
 .app-header .container {
@@ -1646,25 +1646,29 @@ select.form-control {
 }
 
 .app-header h1 {
+    font-family: "FKGroteskNeue", "Geist", 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: var(--font-size-4xl); /* 30px */
-    font-weight: 700; /* Increased font weight */
-    margin-bottom: var(--space-8);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Slightly adjusted text shadow */
+    font-weight: 700;
+    margin: 0 0 var(--space-8) 0; /* Retain existing margin */
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
     opacity: 0; /* Initial state for animation */
     animation: fadeInH1 0.8s ease-out forwards;
     animation-delay: 0.2s; /* Slight delay for h1 */
 }
 
 .app-header p {
+    font-family: "FKGroteskNeue", "Geist", 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: var(--font-size-xl); /* 18px */
-    opacity: 0; /* Initial state for animation, overrides existing 0.85 for start */
-    margin-bottom: 0;
+    font-weight: 400;
+    color: #E0E0E0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    opacity: 0; /* Initial state for animation */
+    margin: 0; /* Retain existing margin */
     line-height: var(--line-height-tight); /* Added for consistency if text wraps */
     animation: fadeInP 0.8s ease-out forwards;
     animation-delay: 0.5s; /* Slightly longer delay for p */
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    /* letter-spacing: 0.5px; */ /* Removed as per new design focus */
 }
 
 /* Enhanced Control Panel */
@@ -1755,7 +1759,7 @@ select.form-control {
     transform: translateY(-10px);
   }
   to {
-    opacity: 0.85; /* Paragraph's target opacity */
+    opacity: 0.85; /* Paragraph's target opacity as per existing animation */
     transform: translateY(0);
   }
 }
