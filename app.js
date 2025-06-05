@@ -282,6 +282,11 @@ class RevolutionaryWarMap {
     init() {
         this.initializeMap();
         this.loadBattleMarkers();
+        // Ensure the timeline slider range matches the generated dates
+        const timelineSlider = document.getElementById('timeline-slider');
+        if (timelineSlider) {
+            timelineSlider.max = this.timelineDates.length - 1;
+        }
         this.setupEventListeners();
         this.updateTimelineDisplay();
         this.setupPopupEventHandlers(); // Add popup event handling
