@@ -707,10 +707,6 @@ select.form-control {
   flex-shrink: 0;
 }
 
-.control-section {
-  margin-bottom: var(--space-24);
-}
-
 .control-section h3 {
   margin: 0 0 var(--space-12) 0;
   font-size: var(--font-size-lg);
@@ -1621,94 +1617,21 @@ select.form-control {
 
 /* Enhanced Header */
 .app-header {
-    background: linear-gradient(135deg, var(--color-primary), #162a52); /* Adjusted gradient */
-    color: white;
-    position: relative;
-    overflow: hidden; /* Keep to contain ::before pseudo-element */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Added subtle border */
-}
-
-.app-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="white" opacity="0.1"><polygon points="0,0 1000,100 1000,0"/></svg>');
-    background-size: cover;
-    opacity: 0.03; /* Further reduced opacity for subtlety */
-}
-
-.app-header .container {
-    position: relative;
-    z-index: 1; /* Ensure text is above the ::before pseudo-element */
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-16) 0;
 }
 
 .app-header h1 {
-    font-size: var(--font-size-4xl); /* 30px */
-    font-weight: 700; /* Increased font weight */
-    margin-bottom: var(--space-8);
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); /* Slightly adjusted text shadow */
-    opacity: 0; /* Initial state for animation */
-    animation: fadeInH1 0.8s ease-out forwards;
-    animation-delay: 0.2s; /* Slight delay for h1 */
+    margin: 0 0 var(--space-8) 0;
+    color: var(--color-primary);
+    font-size: var(--font-size-3xl);
 }
 
 .app-header p {
-    font-size: var(--font-size-xl); /* 18px */
-    opacity: 0; /* Initial state for animation, overrides existing 0.85 for start */
-    margin-bottom: 0;
-    line-height: var(--line-height-tight); /* Added for consistency if text wraps */
-    animation: fadeInP 0.8s ease-out forwards;
-    animation-delay: 0.5s; /* Slightly longer delay for p */
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-
-/* Enhanced Control Panel */
-.controls-panel {
-    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-    border-right: 3px solid var(--color-primary);
-}
-
-.control-section h3 {
-    color: var(--color-primary);
-    font-weight: var(--font-weight-bold);
-    border-bottom: 2px solid var(--color-primary);
-    padding-bottom: var(--space-4);
-    margin-bottom: var(--space-12);
-}
-
-/* Enhanced Button Styles */
-.btn {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s;
-}
-
-.btn:hover::before {
-    width: 300px;
-    height: 300px;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-lg);
 }
 
 /* Mobile Responsiveness Enhancements */
@@ -1736,26 +1659,4 @@ select.form-control {
     .tips-section {
         margin-top: var(--space-16);
     }
-}
-
-@keyframes fadeInH1 {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1; /* H1 is fully opaque */
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInP {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 0.85; /* Paragraph's target opacity */
-    transform: translateY(0);
-  }
 }
