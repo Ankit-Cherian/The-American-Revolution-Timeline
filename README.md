@@ -4,7 +4,7 @@ An interactive, student‑friendly web app to explore key battles of the America
 
 This project started as a fun hobby and is free for anyone to use, learn from, and adapt. Enjoy, and feel welcome to contribute!
 
-## Live Demo
+## Website Demo
 https://theamericanrevolutiontimeline.netlify.app/
 
 ## Features
@@ -32,7 +32,7 @@ Option B — serve locally (recommended):
 Note: A local server avoids occasional browser restrictions with local files and ensures Leaflet assets load consistently.
 
 ## Tech Stack
-- HTML, CSS, JavaScript (no framework)
+- HTML, CSS, JavaScript 
 - [Leaflet](https://leafletjs.com/) for maps
 - OpenStreetMap tiles for the base map
 
@@ -96,8 +96,8 @@ Tip: The `revolutionary_war_battles_sample.json` file is just a simplified refer
 - Library: © [Leaflet](https://leafletjs.com/) contributors
 
 ## Contributing
-This is a hobby project — contributions, suggestions, and improvements are welcome! Feel free to open an issue or PR. If you’re adding UI features, please update `testing_checklist.md` with any relevant test cases.
+This is just a fun side project — contributions, suggestions, and improvements are welcome! Feel free to open an issue or PR. If you’re adding UI features, please update `testing_checklist.md` with any relevant test cases.
 
  
 
-Made for students, educators, and history fans. Have fun exploring!
+Made for students, teachers, and history nerds (me). Have fun exploring!
