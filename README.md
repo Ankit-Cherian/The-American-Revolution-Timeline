@@ -1,6 +1,6 @@
 # Revolutionary War Battle Explorer
 
-An interactive, student‑friendly web app to explore key battles of the American Revolutionary War (1775–1783). Pan around a Leaflet map, scrub a timeline to see how the war unfolded, and dive into rich, classroom‑ready details for each battle — including outcomes, significance, images, fun facts, sources, and student activities.
+An interactive, student‑friendly web app to explore key battles of the American Revolutionary War (1775–1783). Go through the timeline to see how the war unfolded, and dive into details for each battle — including outcomes, significance, images, fun facts, sources, and student activities.
 
 This project started as a fun hobby and is free for anyone to use, learn from, and adapt. Enjoy, and feel welcome to contribute!
 
