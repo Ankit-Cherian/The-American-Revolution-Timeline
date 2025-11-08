@@ -36,13 +36,6 @@ Note: A local server avoids occasional browser restrictions with local files and
 - [Leaflet](https://leafletjs.com/) for maps
 - OpenStreetMap tiles for the base map
 
-## Screenshots
-Add images to `docs/screenshots/` (or any folder you like) and update the paths below.
-
-![Map and Timeline](docs/screenshots/map-timeline.png)
-![Battle Details Panel](docs/screenshots/battle-details.png)
-![Achievements and Discovery](docs/screenshots/achievements.png)
-
 ## Project Structure
 - `index.html` — App layout, includes map container, controls, and panels
 - `style.css` — Visual design, responsive layout, dark mode, animations
@@ -74,15 +67,6 @@ Add images to `docs/screenshots/` (or any folder you like) and update the paths 
 - Save and refresh — the app picks up changes automatically.
 
 Tip: The `revolutionary_war_battles_sample.json` file is just a simplified reference; the app reads data directly from `app.js`.
-
-## Development Notes
-- The main class is `RevolutionaryWarMap` in `app.js`.
-- Key methods: map init (`initializeMap`), load markers (`loadBattleMarkers`), timeline filtering (`updateVisibleBattles`), search (`performSearch`), details panel (`showBattleDetails`).
-- Styling uses CSS variables and supports dark mode via `prefers-color-scheme` and a `data-color-scheme` hook if you want to add a manual toggle.
-
-## Testing
-- See `testing_checklist.md` for targeted manual tests covering marker interactions, panel behavior, header visuals, and basic regressions.
-- Also check the browser console for any runtime errors after changes.
 
 ## Roadmap Ideas
 - Add more battles and theaters (Southern, Frontier, Naval) with images
